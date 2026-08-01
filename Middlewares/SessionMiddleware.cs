@@ -1,5 +1,4 @@
-﻿// GatewayPuntosPopular/Middlewares/SessionMiddleware.cs
-using PuntosPopularWeb.Gateway.DTOs;
+﻿using PuntosPopularWeb.Gateway.DTOs;
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -17,19 +16,23 @@ namespace PuntosPopularWeb.Gateway.Middlewares
             _next = next;
             _configuration = configuration;
 
-            publicPaths =
-            [
-                _configuration.GetSection("auth_path").GetRequiredSection("login").Value!
-            ];
+            // ✅ EXCLUIR RUTAS PÚBLICAS Y SIGNALR
+            publicPaths = new[]
+            {
+                _configuration.GetSection("auth_path").GetRequiredSection("login").Value!,
+                "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal" // ✅ SIGNALR NEGOCIACIÓN
+            };
         }
 
         public async Task InvokeAsync(HttpContext context)
         {
             var path = context.Request.Path.ToString();
 
-            // Rutas públicas: login no requiere validar sesión
-            if (publicPaths.Any(x => path.Contains(x, StringComparison.OrdinalIgnoreCase)))
+            // ✅ Si es ruta pública O es WebSocket, NO validar sesión
+            if (publicPaths.Any(x => path.Contains(x, StringComparison.OrdinalIgnoreCase)) ||
+                context.WebSockets.IsWebSocketRequest)
             {
+                Console.WriteLine($"✅ Ruta pública/WebSocket: {path} - Sin validar sesión");
                 await _next(context);
                 return;
             }
@@ -66,9 +69,8 @@ namespace PuntosPopularWeb.Gateway.Middlewares
 
                     if (root?.bpInReq != null)
                     {
-                        var bpin = root.bpInReq;
+                        using HttpClient client = new HttpClient();
 
-                        HttpClient client = new HttpClient();
                         string bodystring = JsonSerializer.Serialize(root);
                         StringContent content = new StringContent(bodystring, Encoding.UTF8, "application/json");
 
