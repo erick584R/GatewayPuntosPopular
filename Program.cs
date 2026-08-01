@@ -23,13 +23,22 @@ if (!string.IsNullOrWhiteSpace(seguridadUrl))
     builder.Configuration["ReverseProxy:Clusters:clusterSeguridadCorresponsalApi:Destinations:seguridadCorresponsalApi:Address"] = seguridadUrl;
 }
 
+// ✅ CORS CONFIGURADO POR VARIABLE DE ENTORNO
+var allowedOrigins = Environment.GetEnvironmentVariable("UrlPuntosPopularTest");
+var originsArray = string.IsNullOrWhiteSpace(allowedOrigins)
+    ? new[] { "http://localhost:3000" }  // Por defecto si no hay variable
+    : allowedOrigins.Split("|", StringSplitOptions.RemoveEmptyEntries);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Allow", policy =>
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials()); // ✅ IMPORTANTE para WebSocket
+    {
+        policy
+            .WithOrigins(originsArray)
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();  // ✅ IMPORTANTE para WebSocket
+    });
 });
 
 var app = builder.Build();

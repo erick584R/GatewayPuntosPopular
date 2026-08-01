@@ -58,8 +58,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-01T19:16:48.894Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-01T19:16:48.894Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "Middlewares\\NotificationSesionMiddleware.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAAwDwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T19:16:09.152Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-01T19:16:09.152Z"
             },
             {
               "$type": "Document",
@@ -82,7 +80,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\erick.ramirez\\Desktop\\AgentesCorresponsal_V2.00\\BackEnd\\PuntosPopularWeb.Gateway\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAmwBsAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAIwBYAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-01T19:15:16.392Z",
               "EditorCaption": ""
@@ -97,8 +95,7 @@
               "RelativeToolTip": "Middlewares\\SessionMiddleware.cs",
               "ViewState": "AgIAAGEAAAAAAAAAAAAcwHEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T15:14:37.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-01T15:14:37.701Z"
             }
           ]
         }
