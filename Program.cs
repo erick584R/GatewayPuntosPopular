@@ -23,11 +23,13 @@ if (!string.IsNullOrWhiteSpace(seguridadUrl))
     builder.Configuration["ReverseProxy:Clusters:clusterSeguridadCorresponsalApi:Destinations:seguridadCorresponsalApi:Address"] = seguridadUrl;
 }
 
-// ✅ CORS CONFIGURADO POR VARIABLE DE ENTORNO
+// ✅ CORS CONFIGURADO CORRECTAMENTE
 var allowedOrigins = Environment.GetEnvironmentVariable("UrlPuntosPopularTest");
 var originsArray = string.IsNullOrWhiteSpace(allowedOrigins)
-    ? new[] { "http://localhost:3000" }  // Por defecto si no hay variable
+    ? new[] { "http://localhost:3000", "http://localhost:3001" }
     : allowedOrigins.Split("|", StringSplitOptions.RemoveEmptyEntries);
+
+Console.WriteLine($"🔐 CORS permitido para: {string.Join(", ", originsArray)}");
 
 builder.Services.AddCors(options =>
 {
@@ -37,14 +39,14 @@ builder.Services.AddCors(options =>
             .WithOrigins(originsArray)
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials();  // ✅ IMPORTANTE para WebSocket
+            .AllowCredentials(); // ✅ IMPORTANTE para WebSocket y SignalR
     });
 });
 
 var app = builder.Build();
 
 app.UseRouting();
-app.UseCors("Allow");
+app.UseCors("Allow"); // ✅ CORS ANTES de mapear hubs
 app.UseMiddleware<SessionMiddleware>();
 app.UseAuthorization();
 
@@ -54,7 +56,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// ✅ MAPEAR HUB SIGNALR
+// ✅ MAPEAR HUB SIGNALR AQUÍ
 app.MapHub<NotificationSesionMiddleware>(
     "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal"
 );
