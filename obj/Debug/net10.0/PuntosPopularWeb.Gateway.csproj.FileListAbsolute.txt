@@ -36,3 +36,4 @@ C:\Users\erick.ramirez\Desktop\AgentesCorresponsal_V2.00\BackEnd\PuntosPopularWe
 C:\Users\erick.ramirez\Desktop\AgentesCorresponsal_V2.00\BackEnd\PuntosPopularWeb.Gateway\obj\Debug\net10.0\PuntosPopularWeb.Gateway.pdb
 C:\Users\erick.ramirez\Desktop\AgentesCorresponsal_V2.00\BackEnd\PuntosPopularWeb.Gateway\obj\Debug\net10.0\PuntosPopularWeb.Gateway.genruntimeconfig.cache
 C:\Users\erick.ramirez\Desktop\AgentesCorresponsal_V2.00\BackEnd\PuntosPopularWeb.Gateway\obj\Debug\net10.0\ref\PuntosPopularWeb.Gateway.dll
+C:\Users\erick.ramirez\Desktop\AgentesCorresponsal_V2.00\BackEnd\PuntosPopularWeb.Gateway\obj\Debug\net10.0\PuntosPopularWeb.Gateway.sourcelink.json

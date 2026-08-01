@@ -1,4 +1,5 @@
-﻿using PuntosPopularWeb.Gateway.DTOs;
+﻿// GatewayPuntosPopular/Middlewares/SessionMiddleware.cs
+using PuntosPopularWeb.Gateway.DTOs;
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -33,7 +34,7 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                 return;
             }
 
-            // Si todavía no existe validar-sesion, no bloquear.
+            // Si no existe validar-sesion, no bloquear
             var validatePath = _configuration.GetSection("auth_path").GetSection("validate").Value;
 
             if (string.IsNullOrWhiteSpace(validatePath))
@@ -65,22 +66,16 @@ namespace PuntosPopularWeb.Gateway.Middlewares
 
                     if (root?.bpInReq != null)
                     {
-                        using HttpClient client = new HttpClient();
+                        var bpin = root.bpInReq;
 
-                        string bodyString = JsonSerializer.Serialize(root);
-                        StringContent content = new StringContent(bodyString, Encoding.UTF8, "application/json");
+                        HttpClient client = new HttpClient();
+                        string bodystring = JsonSerializer.Serialize(root);
+                        StringContent content = new StringContent(bodystring, Encoding.UTF8, "application/json");
 
-                        var seguridadBase = Environment.GetEnvironmentVariable("UrlBaseSeguridadCorresponsalApi");
-
-                        if (string.IsNullOrWhiteSpace(seguridadBase))
-                        {
-                            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                            context.Response.ContentType = "text/plain";
-                            await context.Response.WriteAsync("No está configurada la variable de entorno UrlBaseSeguridadCorresponsalApi.");
-                            return;
-                        }
-
-                        var responseValidation = await client.PostAsync(seguridadBase + validatePath, content);
+                        var responseValidation = await client.PostAsync(
+                            Environment.GetEnvironmentVariable("UrlBaseSeguridadCorresponsalApi") + validatePath,
+                            content
+                        );
 
                         if (responseValidation.IsSuccessStatusCode ||
                             (responseValidation.StatusCode == HttpStatusCode.BadRequest && responseValidation.Content != null))
@@ -109,8 +104,7 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                 }
                 catch
                 {
-                    // En esta versión inicial no endurecemos el error;
-                    // solo dejamos 401 al final si no fue posible validar.
+                    // Manejar excepción silenciosamente
                 }
             }
 
