@@ -49,7 +49,7 @@ builder.Services.AddCors(options =>
             .WithOrigins(originsArray)
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials(); // ✅ IMPORTANTE para WebSocket y SignalR
+            .AllowCredentials();
     });
 });
 
@@ -57,7 +57,7 @@ var app = builder.Build();
 
 app.UseRouting();
 
-app.UseCors("Allow"); // ✅ CORS ANTES de mapear hubs
+app.UseCors("Allow");
 
 app.UseMiddleware<SessionMiddleware>();
 
@@ -77,5 +77,9 @@ app.MapHub<NotificationSesionMiddleware>(
 app.MapReverseProxy();
 
 app.MapControllers();
+
+// ✅ AGREGAR ESTO - Escuchar en HTTP en la IP de la red
+app.Urls.Clear();
+app.Urls.Add("http://0.0.0.0:5000");  // ← Escucha en todas las IPs en puerto 5000
 
 app.Run();
