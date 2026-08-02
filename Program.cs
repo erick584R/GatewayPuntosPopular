@@ -25,9 +25,19 @@ if (!string.IsNullOrWhiteSpace(seguridadUrl))
 
 // ✅ CORS CONFIGURADO CORRECTAMENTE
 var allowedOrigins = Environment.GetEnvironmentVariable("UrlPuntosPopularTest");
+
 var originsArray = string.IsNullOrWhiteSpace(allowedOrigins)
-    ? new[] { "http://localhost:3000", "http://localhost:3001" }
-    : allowedOrigins.Split("|", StringSplitOptions.RemoveEmptyEntries);
+    ? new[]
+    {
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://192.168.0.12:3000"
+    }
+    : allowedOrigins
+        .Split("|", StringSplitOptions.RemoveEmptyEntries)
+        .Append("http://192.168.0.12:3000")
+        .Distinct()
+        .ToArray();
 
 Console.WriteLine($"🔐 CORS permitido para: {string.Join(", ", originsArray)}");
 
@@ -46,8 +56,11 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 app.UseRouting();
+
 app.UseCors("Allow"); // ✅ CORS ANTES de mapear hubs
+
 app.UseMiddleware<SessionMiddleware>();
+
 app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
@@ -56,12 +69,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// ✅ MAPEAR HUB SIGNALR AQUÍ
+// ✅ MAPEAR HUB SIGNALR
 app.MapHub<NotificationSesionMiddleware>(
     "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal"
 );
 
 app.MapReverseProxy();
+
 app.MapControllers();
 
 app.Run();

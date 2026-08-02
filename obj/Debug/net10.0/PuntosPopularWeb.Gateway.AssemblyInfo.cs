@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PuntosPopularWeb.Gateway")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b7e7b22f452fbcaba8ea829075058b29a4dc9f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+187f080420505b1d563d09d344fe104bb62afe60")]
 [assembly: System.Reflection.AssemblyProductAttribute("PuntosPopularWeb.Gateway")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PuntosPopularWeb.Gateway")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
