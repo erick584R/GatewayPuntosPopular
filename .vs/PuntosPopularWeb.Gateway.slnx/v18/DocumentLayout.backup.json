@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|c:\\users\\erick.ramirez\\desktop\\agentescorresponsal_v2.00\\backend\\puntospopularweb.gateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|c:\\users\\erick.ramirez\\desktop\\agentescorresponsal_v2.00\\backend\\puntospopularweb.gateway\\middlewares\\notificationsesionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|solutionrelative:middlewares\\notificationsesionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|c:\\users\\erick.ramirez\\desktop\\agentescorresponsal_v2.00\\backend\\puntospopularweb.gateway\\middlewares\\sessionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|solutionrelative:middlewares\\sessionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|c:\\users\\erick.ramirez\\desktop\\agentescorresponsal_v2.00\\backend\\puntospopularweb.gateway\\middlewares\\notificationsesionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|solutionrelative:middlewares\\notificationsesionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|c:\\users\\erick.ramirez\\desktop\\agentescorresponsal_v2.00\\backend\\puntospopularweb.gateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3A1EAEF9-399A-933B-F1D7-9F39D4FF2285}|PuntosPopularWeb.Gateway.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +50,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\erick.ramirez\\Desktop\\AgentesCorresponsal_V2.00\\BackEnd\\PuntosPopularWeb.Gateway\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -62,15 +62,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "NotificationSesionMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\erick.ramirez\\Desktop\\AgentesCorresponsal_V2.00\\BackEnd\\PuntosPopularWeb.Gateway\\Middlewares\\NotificationSesionMiddleware.cs",
               "RelativeDocumentMoniker": "Middlewares\\NotificationSesionMiddleware.cs",
               "ToolTip": "C:\\Users\\erick.ramirez\\Desktop\\AgentesCorresponsal_V2.00\\BackEnd\\PuntosPopularWeb.Gateway\\Middlewares\\NotificationSesionMiddleware.cs",
               "RelativeToolTip": "Middlewares\\NotificationSesionMiddleware.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T19:16:09.152Z"
+              "WhenOpened": "2026-08-01T19:16:09.152Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -80,7 +81,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\erick.ramirez\\Desktop\\AgentesCorresponsal_V2.00\\BackEnd\\PuntosPopularWeb.Gateway\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAuwEgAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAqwFIAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-01T19:15:16.392Z",
               "EditorCaption": ""
@@ -93,7 +94,7 @@
               "RelativeDocumentMoniker": "Middlewares\\SessionMiddleware.cs",
               "ToolTip": "C:\\Users\\erick.ramirez\\Desktop\\AgentesCorresponsal_V2.00\\BackEnd\\PuntosPopularWeb.Gateway\\Middlewares\\SessionMiddleware.cs",
               "RelativeToolTip": "Middlewares\\SessionMiddleware.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAcwA8AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAEwBsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-01T15:14:37.701Z"
             }

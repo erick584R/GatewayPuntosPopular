@@ -78,8 +78,8 @@ app.MapReverseProxy();
 
 app.MapControllers();
 
-// ✅ AGREGAR ESTO - Escuchar en HTTP en la IP de la red
+/*// ✅ AGREGAR ESTO - Escuchar en HTTP en la IP de la red
 app.Urls.Clear();
-app.Urls.Add("http://0.0.0.0:5000");  // ← Escucha en todas las IPs en puerto 5000
+app.Urls.Add("http://0.0.0.0:5000");  // ← Escucha en todas las IPs en puerto 5000*/
 
 app.Run();
