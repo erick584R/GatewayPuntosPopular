@@ -16,11 +16,13 @@ namespace PuntosPopularWeb.Gateway.Middlewares
             _next = next;
             _configuration = configuration;
 
-            // ✅ EXCLUIR RUTAS PÚBLICAS Y SIGNALR
+            // Rutas que no deben pasar por validación previa
             publicPaths = new[]
             {
                 _configuration.GetSection("auth_path").GetRequiredSection("login").Value!,
-                "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal" // ✅ SIGNALR NEGOCIACIÓN
+                _configuration.GetSection("auth_path").GetRequiredSection("validate").Value!,
+                _configuration.GetSection("auth_path").GetRequiredSection("logout").Value!,
+                "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal"
             };
         }
 
@@ -28,7 +30,7 @@ namespace PuntosPopularWeb.Gateway.Middlewares
         {
             var path = context.Request.Path.ToString();
 
-            // ✅ Si es ruta pública O es WebSocket, NO validar sesión
+            // Si es pública o es websocket, dejar pasar
             if (publicPaths.Any(x => path.Contains(x, StringComparison.OrdinalIgnoreCase)) ||
                 context.WebSockets.IsWebSocketRequest)
             {
@@ -37,8 +39,8 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                 return;
             }
 
-            // Si no existe validar-sesion, no bloquear
             var validatePath = _configuration.GetSection("auth_path").GetSection("validate").Value;
+            var logoutPath = _configuration.GetSection("auth_path").GetSection("logout").Value;
 
             if (string.IsNullOrWhiteSpace(validatePath))
             {
@@ -74,6 +76,24 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                         string bodystring = JsonSerializer.Serialize(root);
                         StringContent content = new StringContent(bodystring, Encoding.UTF8, "application/json");
 
+                        // Logout: enviar directo al micro y devolver su respuesta
+                        if (!string.IsNullOrWhiteSpace(logoutPath) &&
+                            path.Equals(logoutPath, StringComparison.OrdinalIgnoreCase))
+                        {
+                            var logoutResponse = await client.PostAsync(
+                                Environment.GetEnvironmentVariable("UrlBaseSeguridadCorresponsalApi")! + logoutPath,
+                                content
+                            );
+
+                            var logoutContent = await logoutResponse.Content.ReadAsStringAsync();
+
+                            context.Response.StatusCode = StatusCodes.Status200OK;
+                            context.Response.ContentType = "application/json";
+                            await context.Response.WriteAsync(logoutContent);
+                            return;
+                        }
+
+                        // Resto de rutas: validar primero
                         var responseValidation = await client.PostAsync(
                             Environment.GetEnvironmentVariable("UrlBaseSeguridadCorresponsalApi") + validatePath,
                             content
@@ -106,7 +126,7 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                 }
                 catch
                 {
-                    // Manejar excepción silenciosamente
+                    // Silencioso por ahora, igual que tu estilo actual
                 }
             }
 

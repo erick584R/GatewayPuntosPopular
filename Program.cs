@@ -16,7 +16,7 @@ builder.Services
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
-var seguridadUrl = Environment.GetEnvironmentVariable("UrlBaseSeguridadCorresponsalApi");
+var seguridadUrl = Environment.GetEnvironmentVariable("UrlBaseSeguridadPuntosPopularApi");
 
 if (!string.IsNullOrWhiteSpace(seguridadUrl))
 {
