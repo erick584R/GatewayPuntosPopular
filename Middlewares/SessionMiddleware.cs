@@ -16,13 +16,13 @@ namespace PuntosPopularWeb.Gateway.Middlewares
             _next = next;
             _configuration = configuration;
 
-            // Rutas que no deben pasar por validación previa
             publicPaths = new[]
             {
                 _configuration.GetSection("auth_path").GetRequiredSection("login").Value!,
                 _configuration.GetSection("auth_path").GetRequiredSection("validate").Value!,
                 _configuration.GetSection("auth_path").GetRequiredSection("logout").Value!,
-                "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal"
+                "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal",
+                "/api/Notificaciones/v1/BancoPopular/inicio-sesion-corresponsal/negotiate"
             };
         }
 
@@ -30,7 +30,6 @@ namespace PuntosPopularWeb.Gateway.Middlewares
         {
             var path = context.Request.Path.ToString();
 
-            // Si es pública o es websocket, dejar pasar
             if (publicPaths.Any(x => path.Contains(x, StringComparison.OrdinalIgnoreCase)) ||
                 context.WebSockets.IsWebSocketRequest)
             {
@@ -76,7 +75,6 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                         string bodystring = JsonSerializer.Serialize(root);
                         StringContent content = new StringContent(bodystring, Encoding.UTF8, "application/json");
 
-                        // Logout: enviar directo al micro y devolver su respuesta
                         if (!string.IsNullOrWhiteSpace(logoutPath) &&
                             path.Equals(logoutPath, StringComparison.OrdinalIgnoreCase))
                         {
@@ -93,7 +91,6 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                             return;
                         }
 
-                        // Resto de rutas: validar primero
                         var responseValidation = await client.PostAsync(
                             Environment.GetEnvironmentVariable("UrlBaseSeguridadCorresponsalApi") + validatePath,
                             content
@@ -126,7 +123,6 @@ namespace PuntosPopularWeb.Gateway.Middlewares
                 }
                 catch
                 {
-                    // Silencioso por ahora, igual que tu estilo actual
                 }
             }
 
